@@ -1,0 +1,66 @@
+<div class="container"><form (ngSubmit)="calculateBill()">
+<div class="mb-3">
+  <label for="customerName" class="form-label">Customer Name:</label>
+  <select id="customerName" class="form-control" [(ngModel)]="selectedCustomer" [ngModelOptions]="{standalone: true}" required>
+    <option value="">Select</option>
+    <option *ngFor="let customers of customers" [value]="customers">{{ customers }}</option>
+  </select>
+  </div>
+  <br/>
+<div class="mb-3">
+  <label for="monthName" class="form-label">Month Name:</label>
+  <select id="monthName" class="form-control" [(ngModel)]="selectedMonth" [ngModelOptions]="{standalone: true}" required>
+    <option value="">Select</option>
+    <option *ngFor="let month of months" [value]="month">{{ month }}</option>
+  </select>
+</div>
+<br/>
+<div class="mb-3">
+  <label for="numberOfUnits" class="form-label">No. of Units:</label>
+  <input id="numberOfUnits" class="form-control" type="number" [(ngModel)]="numberOfUnits" [ngModelOptions]="{standalone: true}" min="1" max="2000" required>
+</div>
+<br/>
+  <button type="submit">Calculate</button>&nbsp;&nbsp;
+  <button type="button" (click)="clearForm()">Clear</button>
+</form>
+<br/>
+<div>
+    <label *ngIf="billAmount !== 0">Bill Amount: {{ billAmount }}</label>
+</div>
+
+</div>
+
+
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+<table class="table table-striped" *ngIf="billingRecords.length > 0">
+  <thead>
+    <tr>
+      <th>Customer Name</th>
+      <th>Month Name</th>
+      <th>No. of Units</th>
+      <th>Bill Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let record of billingRecords">
+      <td>{{ record.customerName }}</td>
+      <td>{{ record.monthName }}</td>
+      <td>{{ record.numberOfUnits }}</td>
+      <td>{{ record.billAmount }}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</body>
+</html>

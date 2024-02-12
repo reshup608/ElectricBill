@@ -1,0 +1,71 @@
+<!-- Add Customer Form -->
+<div class="container">
+<form (ngSubmit)="addCustomer()">
+<div class="mb-1">
+  <label for="customerNumber" class="form-label">Customer Number:</label>
+  <input id="customerNumber" class="form-control" type="text" [(ngModel)]="customerNumber" [ngModelOptions]="{standalone: true}" maxlength="8" pattern="[a-zA-Z0-9]+" required>
+</div>
+<br/>
+<div class="mb-3">
+  <label for="customerName" class="form-label">Customer Name:</label>
+  <input id="customerName" class="form-control" type="text" [(ngModel)]="customerName" [ngModelOptions]="{standalone: true}" maxlength="50" pattern="[a-zA-Z0-9]+" required>
+</div>
+<br/>
+<div class="mb-3">
+  <label for="dob" class="form-label">Date of Birth:</label>
+  <input id="dob" class="form-control" type="date" [(ngModel)]="dob" [ngModelOptions]="{standalone: true}" required>
+</div>
+<br/>
+<div class="mb-3">
+  <label for="address" class="form-label">Address:</label>
+  <textarea id="address" class="form-control" [(ngModel)]="address" [ngModelOptions]="{standalone: true}" maxlength="100" pattern="[a-zA-Z0-9]+" required></textarea>
+</div>
+<br/>
+<div class="mb-3">
+  <label for="pinCode" class="form-label">Pin Code:</label>
+  <input id="pinCode" class="form-control" type="text" [(ngModel)]="pinCode" [ngModelOptions]="{standalone: true}" maxlength="6" pattern="[0-9]{6}" required>
+</div>
+<br/>
+  <button type="submit">Add</button>
+  <button type="button" (click)="clearForm()">Clear</button>
+</form>
+</div>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <table class="table table-striped" *ngIf="customers.length > 0">
+    <thead>
+      <tr>
+      <th>Customer Number</th>
+      <th>Customer Name</th>
+      <th>Date of Birth</th>
+      <th>Address</th>
+      <th>Pin Code</th>
+      <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of customers">
+      <td>{{ customer.customerNumber }}</td>
+      <td>{{ customer.customerName }}</td>
+      <td>{{ customer.dob }}</td>
+      <td>{{ customer.address }}</td>
+      <td>{{ customer.pinCode }}</td>
+      <td><button (click)="deleteCustomer(customer)">Delete</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
+
